@@ -17,11 +17,11 @@ jobs:
     steps:
     - name: Waiting for 200 from the Vercel Preview
       uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
-      id: waitFor200
+      id: waitFor401
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         max_timeout: 300
-    - run: echo ${{steps.waitFor200.outputs.url}}
+    - run: echo ${{steps.waitFor401.outputs.url}}
   test_e2e:
     needs: test_setup
     name: Playwright tests
