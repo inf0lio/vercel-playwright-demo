@@ -15,12 +15,13 @@ jobs:
     outputs:
       preview_url: ${{ steps.waitForVercelPreviewDeployment.outputs.url }}
     steps:
-      - name: Wait for Vercel preview deployment to be ready
-        uses: patrickedqvist/wait-for-vercel-preview@main
-        id: waitForVercelPreviewDeployment
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 60
+    - name: Waiting for 200 from the Vercel Preview
+      uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
+      id: waitFor200
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        max_timeout: 60
+    - run: echo ${{steps.waitFor200.outputs.url}}
   test_e2e:
     needs: test_setup
     name: Playwright tests
