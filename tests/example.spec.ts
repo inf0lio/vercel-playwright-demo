@@ -6,5 +6,5 @@ test('has title', async ({ page }) => {
 
 
   // Expect a title "to contain" a substring.
-  await expect(page.locator('.text-capitalize').last()).toHaveText(/you can drag and drop Items/);
+  await expect(page).toHaveTitle('TodoApp');
 });
